@@ -136,11 +136,8 @@ export function getExtent<T extends NodeDragItem | GraphNode>(
 ) {
   let currentExtent = item.extent || extent
 
-  if (
-    (currentExtent === 'parent' || (!Array.isArray(currentExtent) && currentExtent?.range === 'parent')) &&
-    !item.expandParent
-  ) {
-    if (item.parentNode && parent && item.dimensions.width && item.dimensions.height) {
+  if (currentExtent === 'parent' || (!Array.isArray(currentExtent) && currentExtent?.range === 'parent')) {
+    if (!item.expandParent && item.parentNode && parent && item.dimensions.width && item.dimensions.height) {
       const parentExtent = getParentExtent(currentExtent, item, parent)
 
       if (parentExtent) {
