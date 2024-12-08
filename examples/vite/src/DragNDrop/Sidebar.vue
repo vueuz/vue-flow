@@ -1,23 +1,12 @@
 <script lang="ts" setup>
-function onDragStart(event: DragEvent, nodeType: string) {
-  if (event.dataTransfer) {
-    event.dataTransfer.setData('application/vueflow', nodeType)
-    event.dataTransfer.effectAllowed = 'move'
-  }
-}
+import DragItem from './DragItem.vue'
 </script>
 
 <template>
   <aside>
     <div class="description">You can drag these nodes to the pane on the left.</div>
-    <div class="vue-flow__node-input" :draggable="true" @dragstart="(event: DragEvent) => onDragStart(event, 'input')">
-      Input Node
-    </div>
-    <div class="vue-flow__node-default" :draggable="true" @dragstart="(event: DragEvent) => onDragStart(event, 'default')">
-      Default Node
-    </div>
-    <div class="vue-flow__node-output" :draggable="true" @dragstart="(event: DragEvent) => onDragStart(event, 'output')">
-      Output Node
-    </div>
+    <DragItem type="input" :draggable="true"> Input Node </DragItem>
+    <DragItem type="default" :draggable="true"> Default Node </DragItem>
+    <DragItem type="output" :draggable="true"> Output Node </DragItem>
   </aside>
 </template>
